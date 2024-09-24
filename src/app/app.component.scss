@@ -62,7 +62,7 @@ html, body {
   color: $text;
   max-width: 25rem;
   padding: 1.5rem;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -82,12 +82,12 @@ html, body {
   display: flex;
   position: relative;
   background-color: $bg;
-  border-radius: 0.75rem;
+  border-radius: 0.6rem;
   border: 0 solid transparent;
   align-items: center;
 
   &:focus-within {
-    outline: 1px solid $primary;
+    outline: 2px solid $primary;
   }
 
   input {
@@ -108,7 +108,7 @@ html, body {
   border: 1px solid $border;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
-  border-radius: 0.75rem;
+  border-radius: 0.6rem;
   flex-direction: column;
   justify-content: center;
   color: $textLight;
@@ -160,14 +160,14 @@ html, body {
   transition: width 0.2s ease, height 0.2s ease;
 
   &:hover {
-    outline: 1px solid $primaryHover;
+    outline: 2px solid $primaryHover;
     color: $primaryHover;
   }
 
   &:active {
     width: 2.65rem;
     height: 2.65rem;
-    outline: 1px solid $primary;
+    outline: 2px solid $primary;
     color: $primary;
     transition: width 0.2s ease, height 0.2s ease;
   }
