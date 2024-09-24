@@ -1,20 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://font.googleapis.com/css2?family=Inter&display=swap');
-
-:root {
-  --primary: #9FE870;
-  --primary-hover: #CDFFAD;
-}
-
 body {
   background-color: #121511;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
   overflow: hidden;
-  text-align: center;
 }
 

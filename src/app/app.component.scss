@@ -1,45 +1,44 @@
-.card {
-  width: 100%;
-  padding: 1.5rem 1.25rem;
-  background-color: #2A2D29;
-  color: #fff;
-  border: 0 solid transparent;
-  border-radius: 1.5rem;
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+$primary: #9FE870;
+$primaryHover: #CDFFAD;
+$text: #163300;
+$widgetBg: #2A2D29;
+$bg: #121511;
+$white: #fff;
+$border: #555754;
+$textLight: #CACFBD;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
   font-family: 'Inter', sans-serif;
-  font-weight: normal;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  min-width: 15rem;
-  max-width: 25rem;
+  background-color: $bg;
+  height: 100%;
+  overflow: hidden;
 }
 
-.rate {
-  border: 1px solid #555745;
+.container {
+  padding: 1rem;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  border-radius: 0.75rem;
+  justify-content: center;
 }
 
-input {
-  padding: 0.5rem;
-  color: #ffffff;
-  background-color: transparent;
-  width: 100%;
-  border-radius: 99rem;
-  min-height: 3rem;
-  font-size: 1.5rem;
-  border: none;
-  outline: none;
+::selection {
+  background-color: $primary;
+  color: $text;
 }
 
-.primary-btn {
-  background: var(--primary);
-  color: #163300;
+.primary--btn {
+  background-color: $primary;
+  color: $text;
+  padding: 10px;
   min-height: 2.75rem;
   border-radius: 99rem;
   border: none;
@@ -47,9 +46,143 @@ input {
   cursor: pointer;
   width: 100%;
   font-weight: 600;
-  transition: background 0.2s;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $primaryHover;
+  }
+
+  &:focus {
+    outline: 2px solid $primary;
+  }
 }
 
-.primary-btn:hover {
-  background: var(--primary-hover);
+.transfer-calculator {
+  background-color: $widgetBg;
+  color: $text;
+  max-width: 25rem;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 15rem;
 }
+
+.transfer-calculator h1 {
+  color: $white;
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.input__wrapper {
+  width: 100%;
+  display: flex;
+  position: relative;
+  background-color: $bg;
+  border-radius: 0.75rem;
+  border: 0 solid transparent;
+  align-items: center;
+
+  &:focus-within {
+    outline: 1px solid $primary;
+  }
+
+  input {
+    padding: 0.5rem 1rem;
+    color: $white;
+    background: transparent;
+    width: 100%;
+    border-radius: 99rem;
+    min-height: 3rem;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+  }
+}
+
+.fee-rate {
+  display: flex;
+  border: 1px solid $border;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 0.75rem;
+  flex-direction: column;
+  justify-content: center;
+  color: $textLight;
+  align-items: center;
+
+  svg {
+    stroke: $primary;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .current-rate {
+    font-size: 1.25rem;
+    color: $white;
+    margin-bottom: 1rem;
+  }
+}
+
+.currency__select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $white;
+  position: absolute;
+  background-color: $bg;
+  padding-left: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.switch__button {
+  position: relative;
+  z-index: 1;
+  border-radius: 99rem;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -0.75rem auto;
+  cursor: pointer;
+  background-color: $widgetBg;
+  transition: width 0.2s ease, height 0.2s ease;
+
+  &:hover {
+    outline: 1px solid $primaryHover;
+    color: $primaryHover;
+  }
+
+  &:active {
+    width: 2.65rem;
+    height: 2.65rem;
+    outline: 1px solid $primary;
+    color: $primary;
+    transition: width 0.2s ease, height 0.2s ease;
+  }
+
+  &:not(:active) {
+    transition: width 1s ease, height 1s ease;
+  }
+
+  svg {
+    background: transparent;
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: rotate(90deg);
+    fill: $primary;
+    outline: none;
+  }
+}
+

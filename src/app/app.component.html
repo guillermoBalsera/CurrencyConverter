@@ -1,13 +1,30 @@
-<div class="card">
-  <h4>Currency converter</h4>
-  <input type="number" inputmode="decimal" >
-  <input type="number">
-  <div class="rate">
-    <p>
-      Transfer Rate
-      <br><br>
-      {{ title }}
-    </p>
+<div class="container">
+  <div class="transfer-calculator">
+    <h1>Currency converter</h1>
+    <fieldset class="input__wrapper">
+      <input type="number" class="input--rate">
+      <div class="currency__select">
+        <img src="/flags/europe.svg" alt="">
+        EUR
+      </div>
+    </fieldset>
+    <button class="switch__button" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 24 24">
+        <path fill="currentColor"
+              d="M18 10a1 1 0 0 0-1-1H5.41l2.3-2.29a1 1 0 0 0-1.42-1.42l-4 4a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 11h14a1 1 0 0 0 1-1m3.92 3.62A1 1 0 0 0 21 13H7a1 1 0 0 0 0 2h11.59l-2.3 2.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l4-4a1 1 0 0 0 .21-1.09"/>
+      </svg>
+    </button>
+    <fieldset class="input__wrapper">
+      <input type="number" class="input--rate">
+      <div class="currency__select">
+        <img src="/flags/usd.svg" alt="currency-flag">
+        USD
+      </div>
+    </fieldset>
+    <dl class="fee-rate">
+      <dt>Transfer Rate</dt>
+      <dt>{{ title }}</dt>
+    </dl>
+    <button class="primary--btn" type="button">Convert</button>
   </div>
-  <button class="primary-btn">Calculate</button>
 </div>
