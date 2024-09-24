@@ -75,6 +75,7 @@ html, body {
   font-size: 2rem;
   margin-bottom: 1.25rem;
   text-align: center;
+  user-select: none;
 }
 
 .input__wrapper {
@@ -113,6 +114,7 @@ html, body {
   justify-content: center;
   color: $textLight;
   align-items: center;
+  user-select: none;
 
   svg {
     stroke: $primary;
@@ -158,6 +160,8 @@ html, body {
   cursor: pointer;
   background-color: $widgetBg;
   transition: width 0.2s ease, height 0.2s ease;
+  color: $white;
+  outline: 2px solid $textLight;
 
   &:hover {
     outline: 2px solid $primaryHover;
@@ -165,8 +169,6 @@ html, body {
   }
 
   &:active {
-    width: 2.65rem;
-    height: 2.65rem;
     outline: 2px solid $primary;
     color: $primary;
     transition: width 0.2s ease, height 0.2s ease;
