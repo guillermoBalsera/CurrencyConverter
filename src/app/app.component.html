@@ -3,7 +3,7 @@
     <h1>Currency Converter</h1>
     <fieldset class="input__wrapper">
       <input type="number" class="input--rate">
-      <div class="currency__select">
+      <div class="currency__select" (click)="openModalA()">
         <img src="flags/usd.svg" alt="currency-flag">
         USD
       </div>
@@ -16,7 +16,7 @@
     </button>
     <fieldset class="input__wrapper">
       <input type="number" class="input--rate">
-      <div class="currency__select">
+      <div class="currency__select" (click)="openModalB()">
         <img src="flags/europe.svg" alt="">
         EUR
       </div>
@@ -28,3 +28,19 @@
     <button class="primary--btn" type="button">Convert</button>
   </div>
 </div>
+
+<app-modal [isVisible]="showModalA" title="{{ modal_title }}" (closeModalEvent)="closeModalA()">
+  @for (x of data; track x) {
+    <div class="currency">
+      <p>{{ x.code }} | {{ x.name }} | {{ x.icon }}</p>
+    </div>
+  }
+</app-modal>
+
+<app-modal [isVisible]="showModalB" title="{{ modal_title }}" (closeModalEvent)="closeModalB()">
+  @for (x of data; track x) {
+    <div class="currency">
+      <p>{{ x.code }} | {{ x.name }} | {{ x.icon }}</p>
+    </div>
+  }
+</app-modal>
