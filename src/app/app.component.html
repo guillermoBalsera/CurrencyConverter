@@ -4,26 +4,26 @@
     <fieldset class="input__wrapper">
       <input type="number" class="input--rate">
       <div class="currency__select" (click)="openModalA()">
-        <img src="flags/usd.svg" alt="currency-flag">
-        USD
+        <img [src]="'flags/' + currencyA.icon" alt="">
+        {{ currencyA.code | uppercase }}
       </div>
     </fieldset>
-    <button class="switch__button" type="button">
+    <button class="switch__button" type="button" (click)="switch_currency()">
       <svg xmlns="http://www.w3.org/2000/svg" width="768" height="768" viewBox="0 0 24 24">
         <path fill="currentColor"
               d="M18 10a1 1 0 0 0-1-1H5.41l2.3-2.29a1 1 0 0 0-1.42-1.42l-4 4a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 11h14a1 1 0 0 0 1-1m3.92 3.62A1 1 0 0 0 21 13H7a1 1 0 0 0 0 2h11.59l-2.3 2.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l4-4a1 1 0 0 0 .21-1.09"/>
       </svg>
     </button>
     <fieldset class="input__wrapper">
-      <input type="number" class="input--rate">
+      <input type="number" class="input--rate" disabled>
       <div class="currency__select" (click)="openModalB()">
-        <img src="flags/europe.svg" alt="">
-        EUR
+        <img [src]="'flags/' + currencyB.icon" alt="">
+        {{ currencyB.code | uppercase }}
       </div>
     </fieldset>
     <dl class="fee-rate">
       <dt>Transfer Rate</dt>
-      <dt>{{ title }}</dt>
+      <dt> 1{{ currencyA.code | uppercase }} = 2{{ currencyB.code | uppercase }}</dt>
     </dl>
     <button class="primary--btn" type="button">Convert</button>
   </div>
@@ -31,16 +31,28 @@
 
 <app-modal [isVisible]="showModalA" title="{{ modal_title }}" (closeModalEvent)="closeModalA()">
   @for (x of data; track x) {
-    <div class="currency">
-      <p>{{ x.code }} | {{ x.name }} | {{ x.icon }}</p>
-    </div>
+    @if (x.code != currencyB.code) {
+      <div class="currency" (click)="currencyA = x; showModalA = false">
+        <div class="currency-info">
+          <img [src]="'flags/' + x.icon" alt="{{ x.name }}">
+          <span>{{ x.code | uppercase }}</span>
+          <span>{{ x.name }}</span>
+        </div>
+      </div>
+    }
   }
 </app-modal>
 
 <app-modal [isVisible]="showModalB" title="{{ modal_title }}" (closeModalEvent)="closeModalB()">
   @for (x of data; track x) {
-    <div class="currency">
-      <p>{{ x.code }} | {{ x.name }} | {{ x.icon }}</p>
-    </div>
+    @if (x.code != currencyA.code) {
+      <div class="currency" (click)="currencyB = x; showModalB = false">
+        <div class="currency-info">
+          <img [src]="'flags/' + x.icon" alt="{{ x.name }}">
+          <span>{{ x.code | uppercase }}</span>
+          <span>{{ x.name }}</span>
+        </div>
+      </div>
+    }
   }
 </app-modal>

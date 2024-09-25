@@ -13,12 +13,21 @@ export class AppComponent implements OnInit {
 
   modal_title: string = "Choose a currency";
 
-  currencyA: any = null;
-  currencyB: any = null;
+  currencyA: any = {
+    "code": "eur",
+    "name": "Euro",
+    "icon": "europe.svg"
+  };
+  currencyB: any = {
+    "code": "usd",
+    "name": "United States Dollar",
+    "icon": "united_states.svg"
+  };
 
   data: any[] = [];
 
-  constructor(private currency: CurrencyService) {}
+  constructor(private currency: CurrencyService) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.currency.getJsonData().subscribe((data: any): void => {
@@ -40,6 +49,12 @@ export class AppComponent implements OnInit {
 
   closeModalB(): void {
     this.showModalB = false;
+  }
+
+  switch_currency(): void {
+    let temp_currency = this.currencyA;
+    this.currencyA = this.currencyB;
+    this.currencyB = temp_currency
   }
 
 }

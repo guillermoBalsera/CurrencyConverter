@@ -188,8 +188,46 @@ html, body {
   }
 }
 
+.currency {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  width: 60%;
+
+  .currency-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    border: 2px solid $primary;
+    border-radius: 1rem;
+    padding: 20px 20px;
+    gap: 4rem;
+    flex-grow: 1;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  span {
+    margin: 0 20px;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
 .currency:hover {
-  color: $primary;
+  color: $primaryHover;
   cursor: pointer;
+
+  .currency-info {
+    background-color: #555754;
+    border: 2px solid $primaryHover;
+  }
 }
 

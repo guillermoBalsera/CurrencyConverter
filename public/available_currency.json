@@ -172,7 +172,7 @@
     {
         "code": "eur",
         "name": "Euro",
-        "icon": "eurozone.svg"
+        "icon": "europe.svg"
     },
     {
         "code": "fjd",
@@ -508,11 +508,6 @@
         "code": "xaf",
         "name": "Central African CFA Franc",
         "icon": "central_african_republic.svg"
-    },
-    {
-        "code": "xof",
-        "name": "West African CFA Franc",
-        "icon": "west_africa.svg"
     },
     {
         "code": "xpf",

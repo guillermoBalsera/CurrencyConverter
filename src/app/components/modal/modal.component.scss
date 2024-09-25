@@ -48,6 +48,21 @@
 
 h2 {
   text-align: center;
-  margin-top: 10px;
-  margin-left: 45%;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #CACFBDFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
