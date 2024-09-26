@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CurrencyService} from "./services/currency/currency.service";
 import {CurrencyAPIService} from "./services/currencyAPI/currency-api.service";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,10 @@ import {CurrencyAPIService} from "./services/currencyAPI/currency-api.service";
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  title: string = ' 1EUR = 1.12USD ';
+  title: string = "";
+
   showModalA: boolean = false;
   showModalB: boolean = false;
-
-  modal_title: string = "Choose a currency";
 
   currencyA: any = {
     "code": "eur",
@@ -27,9 +27,10 @@ export class AppComponent implements OnInit {
 
   exchange: number = 0.00;
 
-  origin: number = 0.00
-  result: number = 0.00
+  origin: number = 1.00;
+  result: number = 0.00;
 
+  originalData: any[] = [];
   data: any[] = [];
   filter: string = "";
 
@@ -37,17 +38,22 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.currency.getJsonData().subscribe((data: any): void => {
-      this.data = data;
-    });
+    this.getCurrencies();
     this.getExchange();
   }
 
   getExchange(): void {
     this.currencyAPI.getTrade(this.currencyA.code).subscribe((data: any): void => {
       this.exchange = this.roundNumber(data[this.currencyA.code][this.currencyB.code]);
+      this.calculateResult();
     });
-    this.calculateResult()
+  }
+
+  getCurrencies(): void {
+    this.currency.getJsonData().subscribe((data: any): void => {
+      this.originalData = data;
+      this.data = data;
+    });
   }
 
   roundNumber(x: number): number {
@@ -59,6 +65,8 @@ export class AppComponent implements OnInit {
   }
 
   closeModalA(): void {
+    this.filter = "";
+    this.filterData();
     this.showModalA = false;
   }
 
@@ -67,6 +75,8 @@ export class AppComponent implements OnInit {
   }
 
   closeModalB(): void {
+    this.filter = "";
+    this.filterData();
     this.showModalB = false;
   }
 
@@ -93,7 +103,9 @@ export class AppComponent implements OnInit {
   }
 
   filterData(): void {
-
+    this.data = this.originalData.filter((currency: any): boolean =>
+      currency.name.toLowerCase().includes(this.filter.toLowerCase()) || currency.code.toLowerCase().includes(this.filter.toLowerCase())
+    );
   }
 
 }

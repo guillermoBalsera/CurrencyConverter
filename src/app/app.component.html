@@ -29,13 +29,13 @@
   </div>
 </div>
 
-<app-modal [isVisible]="showModalA" title="{{ modal_title }}" (closeModalEvent)="closeModalA()">
+<app-modal [isVisible]="showModalA" title="Choose a currency" (closeModalEvent)="closeModalA()">
     <div class="filter">
-      <input type="text" class="filter-input" [(ngModel)]="filter" >
+      <input type="text" class="filter-input" [(ngModel)]="filter" (input)="filterData()" placeholder="Search currency by name or code">
     </div>
   @for (x of data; track x) {
     @if (x.code != currencyB.code) {
-      <div class="currency" (click)="currencyA = x; showModalA = false; getExchange()">
+      <div class="currency" (click)="currencyA = x; closeModalA(); getExchange()">
         <div class="currency-info">
           <img [src]="'flags/' + x.icon" alt="{{ x.name }}">
           <span>{{ x.code | uppercase }}</span>
@@ -46,13 +46,13 @@
   }
 </app-modal>
 
-<app-modal [isVisible]="showModalB" title="{{ modal_title }}" (closeModalEvent)="closeModalB()">
+<app-modal [isVisible]="showModalB" title="Choose a currency" (closeModalEvent)="closeModalB()">
     <div class="filter">
-      <input type="text" class="filter-input" [(ngModel)]="filter" >
+      <input type="text" class="filter-input" [(ngModel)]="filter" (input)="filterData()" placeholder="Search currency by name or code">
     </div>
   @for (x of data; track x) {
     @if (x.code != currencyA.code) {
-      <div class="currency" (click)="currencyB = x; showModalB = false; getExchange()">
+      <div class="currency" (click)="currencyB = x; closeModalB(); getExchange()">
         <div class="currency-info">
           <img [src]="'flags/' + x.icon" alt="{{ x.name }}">
           <span>{{ x.code | uppercase }}</span>
