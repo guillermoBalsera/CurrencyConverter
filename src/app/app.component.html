@@ -2,7 +2,7 @@
   <div class="transfer-calculator">
     <h1>Currency Converter</h1>
     <fieldset class="input__wrapper">
-      <input type="number" class="input--rate">
+      <input type="number" class="input--rate" [(ngModel)]="origin" (input)="onInputChange($event)">
       <div class="currency__select" (click)="openModalA()">
         <img [src]="'flags/' + currencyA.icon" alt="">
         {{ currencyA.code | uppercase }}
@@ -15,7 +15,7 @@
       </svg>
     </button>
     <fieldset class="input__wrapper">
-      <input type="number" class="input--rate" disabled>
+      <input type="number" class="input--rate" [(ngModel)]="result" disabled>
       <div class="currency__select" (click)="openModalB()">
         <img [src]="'flags/' + currencyB.icon" alt="">
         {{ currencyB.code | uppercase }}
@@ -23,16 +23,19 @@
     </fieldset>
     <dl class="fee-rate">
       <dt>Transfer Rate</dt>
-      <dt> 1{{ currencyA.code | uppercase }} = 2{{ currencyB.code | uppercase }}</dt>
+      <dt> 1{{ currencyA.code | uppercase }} = {{ exchange }}{{ currencyB.code | uppercase }} </dt>
     </dl>
-    <button class="primary--btn" type="button">Convert</button>
+    <button class="primary--btn" type="button" (click)="calculateResult()">Convert</button>
   </div>
 </div>
 
 <app-modal [isVisible]="showModalA" title="{{ modal_title }}" (closeModalEvent)="closeModalA()">
+    <div class="filter">
+      <input type="text" class="filter-input" [(ngModel)]="filter" >
+    </div>
   @for (x of data; track x) {
     @if (x.code != currencyB.code) {
-      <div class="currency" (click)="currencyA = x; showModalA = false">
+      <div class="currency" (click)="currencyA = x; showModalA = false; getExchange()">
         <div class="currency-info">
           <img [src]="'flags/' + x.icon" alt="{{ x.name }}">
           <span>{{ x.code | uppercase }}</span>
@@ -44,9 +47,12 @@
 </app-modal>
 
 <app-modal [isVisible]="showModalB" title="{{ modal_title }}" (closeModalEvent)="closeModalB()">
+    <div class="filter">
+      <input type="text" class="filter-input" [(ngModel)]="filter" >
+    </div>
   @for (x of data; track x) {
     @if (x.code != currencyA.code) {
-      <div class="currency" (click)="currencyB = x; showModalB = false">
+      <div class="currency" (click)="currencyB = x; showModalB = false; getExchange()">
         <div class="currency-info">
           <img [src]="'flags/' + x.icon" alt="{{ x.name }}">
           <span>{{ x.code | uppercase }}</span>

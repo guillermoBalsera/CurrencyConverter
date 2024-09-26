@@ -2,12 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 
-interface Currency {
-  code: string,
-  name: string,
-  icon: string
-}
-
 @Injectable({
   providedIn: 'root'
 })
