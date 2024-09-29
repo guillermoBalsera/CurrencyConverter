@@ -31,7 +31,7 @@
 
 <app-modal [isVisible]="showModalA" title="Choose a currency" (closeModalEvent)="closeModalA()">
     <div class="filter">
-      <input type="text" class="filter-input" [(ngModel)]="filter" (input)="filterData()" placeholder="Search currency by name or code">
+      <input type="search" class="filter-input" [(ngModel)]="filter" (input)="filterData()" placeholder="Search currency by name or code">
     </div>
   @for (x of data; track x) {
     @if (x.code != currencyB.code) {
@@ -48,7 +48,7 @@
 
 <app-modal [isVisible]="showModalB" title="Choose a currency" (closeModalEvent)="closeModalB()">
     <div class="filter">
-      <input type="text" class="filter-input" [(ngModel)]="filter" (input)="filterData()" placeholder="Search currency by name or code">
+      <input type="search" class="filter-input" [(ngModel)]="filter" (input)="filterData()" placeholder="Search currency by name or code">
     </div>
   @for (x of data; track x) {
     @if (x.code != currencyA.code) {
